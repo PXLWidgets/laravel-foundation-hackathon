@@ -16,7 +16,7 @@ services:
       - APACHE_WORKDIR=/var/www/html/public
 
   mysql:
-    image: mysql
+    image: mysql:5
     restart: unless-stopped
     ports:
       - 33082:3306
