@@ -1,0 +1,35 @@
+version: '2.1'
+
+services:
+  app:
+    image: gitlab.pxlwidgets.com:8443/internal/docker/php-apache:7.3-pcov
+    restart: unless-stopped
+    ports:
+      - 8011:80
+    links:
+      - mysql
+      - redis
+    volumes:
+      - .:/var/www/html
+    environment:
+      - APP_ENV=development
+      - APACHE_WORKDIR=/var/www/html/public
+
+  mysql:
+    image: mysql
+    restart: unless-stopped
+    ports:
+      - 33082:3306
+    environment:
+      - MYSQL_DATABASE=laravel_foundation_hackathon
+      - MYSQL_ALLOW_EMPTY_PASSWORD=true
+      - MYSQL_USER=root
+    volumes:
+      - mysql:/var/lib/mysql
+
+  redis:
+      image: redis
+
+volumes:
+  mysql:
+    driver: local
