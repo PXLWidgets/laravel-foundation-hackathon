@@ -29,9 +29,9 @@
 
                 <div class="intro--bottom">
                     <ul class="certificates-list">
-                        <li>Cert one</li>
-                        <li>Cert two</li>
-                        <li>Cert three</li>
+                        @foreach ($user->certificates as $certificate)
+                        <li>{{ $certificate->title }}</li>
+                        @endforeach
                     </ul>
                 </div>
             </div>
