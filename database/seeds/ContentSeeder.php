@@ -16,24 +16,28 @@ class ContentSeeder extends Seeder
     public function run()
     {
         $firstCourse = factory(Course::class)->create([
+            'title' => 'Introduction',
             'intro' => 'Om te oefenen beginnen we met een de oefenvraag.',
             'order' => 1,
         ]);
 
         $secondCourse = factory(Course::class)->create([
-            'intro'     => 'Installeren van Laravel',
+            'title' => 'Installeren van Laravel',
+            'intro'     => 'Hoe installeer je laravel?',
             'order'     => 2,
             'parent_id' => $firstCourse->id,
         ]);
 
         $thirdCourse = factory(Course::class)->create([
-            'intro'     => 'Eloquent',
+            'title'     => 'Eloquent',
+            'intro'     => 'Hoe gebruik je Eloquent?',
             'order'     => 3,
             'parent_id' => $secondCourse->id,
         ]);
 
         $fourthCourse = factory(Course::class)->create([
-            'intro'     => 'Laravel 5.8',
+            'title'     => 'Laravel 5.8',
+            'intro'     => 'Wat is er veranderd in Laravel 5.8',
             'order'     => 3,
             'parent_id' => $secondCourse->id,
         ]);
