@@ -2,3 +2,12 @@
 #main-content {
     min-height: calc(100vh - #{$site-header-height + $site-footer-height});
 }
+
+.breadcrumbs {
+    @include list-unstyled;
+    @include centered-flex-row(flex-start);
+
+    li {
+        margin: 0 0.5rem;
+    }
+}

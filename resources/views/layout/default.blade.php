@@ -1,3 +1,13 @@
+@php
+
+    /**
+     * @var array $crumbs
+     */
+
+    $crumbs = $crumbs ?? [];
+@endphp
+
+
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
@@ -16,6 +26,15 @@
             @include('layout.site-header')
         </div>
     </header>
+
+    <div class="container">
+        <ul class="breadcrumbs">
+            <li>Home</li>
+            @foreach($crumbs as $crumb)
+                > <li>{{ $crumb }}</li>
+            @endforeach
+        </ul>
+    </div>
 
     <main id="main-content" class="container">
         @yield('content')

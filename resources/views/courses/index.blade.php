@@ -6,7 +6,9 @@
 
 @endphp
 
-@extends('layout.default')
+@extends('layout.default', [
+    'crumbs' => ['courses'],
+])
 
 @section('content')
     <div id="courses-index">

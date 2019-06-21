@@ -7,10 +7,13 @@
 @endphp
 
 
-@extends('layout.default')
+@extends('layout.default', [
+    'crumbs' => ['account', 'dashboard'],
+])
 
 @section('content')
     <div id="account-index">
+
 
         <header>
             <div class="avatar">
