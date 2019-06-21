@@ -56,7 +56,7 @@ class QuestionsController extends Controller
             ->first();
 
         if ($nextQuestion instanceof QuestionInterface) {
-            return redirect(route('questions.show', ['question' => $nextQuestion->getId()]));
+            return redirect($nextQuestion->getUrl());
         }
 
         return redirect(route('questions.process-answers', ['course' => $course->getId()]));
@@ -79,7 +79,7 @@ class QuestionsController extends Controller
         $user = \Auth::user();
         $user->courses()->save($course);
 
-        return redirect(route('courses.failure', ['course' => $courseId]));
+        return redirect(route('courses.success', ['course' => $courseId]));
     }
 
 }

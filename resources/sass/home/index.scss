@@ -1,3 +1,12 @@
 #homepage {
 
+    .intro {
+        padding: 5rem 3rem;
+        color: white;
+        background: url("/images/tree.jpg") center/cover no-repeat;
+
+        p {
+            font-size: 20px;
+        }
+    }
 }
