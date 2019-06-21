@@ -1,0 +1,13 @@
+.site-header {
+    height: 100px;
+    border-bottom: 1px solid $gray-400;
+
+    ul {
+        display: flex;
+        list-style: none;
+    }
+
+    &--link {
+        display: block;
+    }
+}

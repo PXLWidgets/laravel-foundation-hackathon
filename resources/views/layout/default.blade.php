@@ -28,10 +28,13 @@
 
     <main id="main-content" class="container">
         Content:
+        <br>
+        -------
         @yield('content')
     </main>
 
     <footer class="site-footer">
-        Site footer
+        Site footer:
+        -----------
     </footer>
 </body>

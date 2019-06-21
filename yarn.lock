@@ -570,6 +570,10 @@
     lodash "^4.17.11"
     to-fast-properties "^2.0.0"
 
+"@jjwesterkamp/sass-utils@^2.1.1":
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/@jjwesterkamp/sass-utils/-/sass-utils-2.1.1.tgz#3bc8422da4ddcbd1cf222a377b530b9d0dcc96f3"
+
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/@mrmlnc/readdir-enhanced/-/readdir-enhanced-2.2.1.tgz#524af240d1a360527b730475ecfa1344aa540dde"

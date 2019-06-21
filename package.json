@@ -24,6 +24,7 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
+        "@jjwesterkamp/sass-utils": "^2.1.1",
         "qs": "^6.7.0",
         "ramda": "^0.26.1",
         "rxjs": "^6.5.2"
