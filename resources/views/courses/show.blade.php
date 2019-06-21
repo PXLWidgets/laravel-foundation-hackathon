@@ -28,7 +28,7 @@
                     @endforeach
                 </ul>
                 <hr class="my-4">
-                <h3>Resources</h3>
+                <h3>Lesmateriaal</h3>
                 <ul class="list-unstyled mb-4">
                     @foreach ($course->resources as $resource)
                         <li><a target="_blank" href="{{ $resource->url }}">{{ $resource->title }}</a></li>
