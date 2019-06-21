@@ -101,11 +101,32 @@ class Course extends Model implements CourseInterface, AttachableInterface
         return $this->questions()->get();
     }
 
+
+    public function hasCompletedParents(): bool
+    {
+        /** @var User $user */
+        $user = \Auth::user();
+
+        if ($this->parent_id === null)  {
+            return true;
+        }
+
+        $parentCourses = $user->getCompletedCourses()->filter(function($item) {
+            return $item->id === $this->parent_id;
+        });
+
+        return $parentCourses->count() > 0;
+    }
+
     public function isCompletedByUser(): bool
     {
         /** @var User $user */
         $user = \Auth::user();
-        return $user->getCompletedCourses()->where('id', $this->getId())->first() !== null;
+
+        $parentCourses = $user->getCompletedCourses()->filter(function($item) {
+            return $item->id === $this->getId();
+        });
+        return $parentCourses->count() > 0;
     }
 
     public function getId(): int
