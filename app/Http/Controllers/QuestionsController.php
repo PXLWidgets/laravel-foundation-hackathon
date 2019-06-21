@@ -27,6 +27,8 @@ class QuestionsController extends Controller
     {
         $question = Question::findOrFail($questionId);
 
+        dd($question);
+
         return view('questions.show', compact('question'));
     }
 
@@ -39,14 +41,14 @@ class QuestionsController extends Controller
 
         $this->service->answerQuestion($question, $answer);
 
-        $nextQuestion = Question::where('course_id', $course->id)
+        $nextQuestion = Question::where('course_id', $course->getId())
             ->where('order', $question->getOrder() + 1);
 
         if ($nextQuestion instanceof QuestionInterface) {
-            return redirect('questions.show', ['question' => $question->id]);
+            return redirect('questions.show', ['question' => $question->getId()]);
         }
 
-        return redirect('questions.process-answers', ['course' => $course->id]);
+        return redirect('questions.process-answers', ['course' => $course->getId()]);
     }
 
     public function processAnswers(int $courseId)

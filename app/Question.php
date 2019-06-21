@@ -71,6 +71,16 @@ class Question extends Model implements QuestionInterface
         return $this->course()->get();
     }
 
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    public function getCorrectAnswer(): AnswerInterface
+    {
+        return $this->getAnswers()->where('is_correct', true)->first();
+    }
+
     public function resources(): MorphToMany
     {
         return $this->morphToMany(Resource::class, 'resourceable');

@@ -13,32 +13,46 @@ class QuestionService
 
     public function answerQuestion(QuestionInterface $question, AnswerInterface $answer)
     {
-        $course     = $question->getCourse();
+        $course = $question->getCourse();
 
         Session::push(
-            self::SESSION_KEY . "." . $course->id,
-            [$question->id => $answer->id]
+            self::SESSION_KEY . "." . $course->getId(),
+            [
+                'question' => $question->getId(),
+                'answer'   => $answer->getId(),
+            ]
         );
     }
 
     public function validateAnswers(CourseInterface $course)
     {
         $questions = $course->getQuestions();
-        $answers = Session::get(self::SESSION_KEY . "." . $course->id);
+        $answers   = Session::get(self::SESSION_KEY . "." . $course->getId());
 
         if ($answers === null || count($answers) !== $questions->count()) {
             return false;
         }
 
         foreach ($questions as $question) {
-            $rightAnswer = $question->getAnswers()->where('is_correct', true)->first();
-            $answer = $answers[$question->id];
+            $rightAnswer = $question->getCorrectAnswer();
+            $answer      = $this->getGivenAnswer($answers, $question->getId());
 
-            if ($rightAnswer->id !== $answer) {
+            if ($rightAnswer->getId() !== $answer) {
                 return false;
             }
         }
 
         return true;
+    }
+
+    protected function getGivenAnswer(array $answers, int $questionId)
+    {
+        foreach ($answers as $answer) {
+            if ($answer['question'] === $questionId) {
+                return $answer['answer'];
+            }
+        }
+
+        return null;
     }
 }
