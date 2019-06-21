@@ -28,6 +28,22 @@ class CoursesController extends Controller
         return view('courses.show', compact('course'));
     }
 
+    public function success(int $courseId)
+    {
+        /** @var CourseInterface $course */
+        $course = Course::findOrFail($courseId);
+
+        dd('Succeeded ' . $course->getTitle());
+    }
+
+    public function failure(int $courseId)
+    {
+        /** @var CourseInterface $course */
+        $course = Course::findOrFail($courseId);
+
+        dd('Failed ' . $course->getTitle());
+    }
+
     protected function getWidestPartInTree(Collection $courses)
     {
         $grouped = [];

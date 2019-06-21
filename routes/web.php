@@ -39,6 +39,8 @@ Route::group([
 
     Route::get('/', 'CoursesController@index')->name('index');
     Route::get('{course}', 'CoursesController@show')->name('show');
+    Route::get('{course}/success', 'CoursesController@success')->name('success');
+    Route::get('{course}/failure', 'CoursesController@failure')->name('failure');
 });
 
 Route::group([

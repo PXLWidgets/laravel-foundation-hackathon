@@ -39,10 +39,11 @@ class QuestionsController extends Controller
         $this->service->answerQuestion($question, $answer);
 
         $nextQuestion = Question::where('course_id', $course->getId())
-            ->where('order', $question->getOrder() + 1);
+            ->where('order', $question->getOrder() + 1)
+            ->first();
 
         if ($nextQuestion instanceof QuestionInterface) {
-            return redirect(route('questions.show', ['question' => $question->getId()]));
+            return redirect(route('questions.show', ['question' => $nextQuestion->getId()]));
         }
 
         return redirect(route('questions.process-answers', ['course' => $course->getId()]));
@@ -55,10 +56,12 @@ class QuestionsController extends Controller
         if ($this->service->validateAnswers($course)) {
             $user = \Auth::user();
             $user->courses()->save($course);
+            $this->service->clearGivenAnswers();
+
+            return redirect(route('courses.success', ['course' => $courseId]));
         }
 
-        $this->service->clearGivenAnswers();
-
+        return redirect(route('courses.failure', ['course' => $courseId]));
     }
 
 }
