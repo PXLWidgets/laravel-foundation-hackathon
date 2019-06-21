@@ -16,8 +16,8 @@ class AddUserParameters extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->string('name');
             $table->string('github_id');
-            $table->string('github_access_token');
-            $table->string('github_refresh_token');
+            $table->string('github_access_token')->nullable();
+            $table->string('github_refresh_token')->nullable();
             $table->string('github_username');
             $table->string('avatar_url');
 
