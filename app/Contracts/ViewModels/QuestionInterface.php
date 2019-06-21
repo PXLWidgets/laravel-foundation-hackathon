@@ -8,6 +8,8 @@ use Illuminate\Support\Collection;
 
 interface QuestionInterface
 {
+    public function getId(): int;
+
     public function getContent(): string;
 
     /**
@@ -20,6 +22,8 @@ interface QuestionInterface
      * @return Collection|AnswerInterface[]
      */
     public function getAnswers(): Collection;
+
+    public function getCorrectAnswer(): AnswerInterface;
 
     public function getType(): string;
 

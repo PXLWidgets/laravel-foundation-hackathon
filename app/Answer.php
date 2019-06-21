@@ -40,4 +40,9 @@ class Answer extends Model implements AnswerInterface
     {
         return $this->question()->get();
     }
+
+    public function getId(): int
+    {
+        return $this->id;
+    }
 }

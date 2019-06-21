@@ -44,5 +44,5 @@ Route::group([
 
     Route::get('{question}', 'QuestionsController@show')->name('show');
     Route::post('', 'QuestionsController@answer')->name('answer');
-    Route::get('process-answers', 'QuestionsController@processAnswers')->name('process-answers');
+    Route::get('process-answers/{course}', 'QuestionsController@processAnswers')->name('process-answers');
 });

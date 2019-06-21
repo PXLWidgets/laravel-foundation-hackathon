@@ -8,6 +8,8 @@ use Illuminate\Support\Collection;
 
 interface CourseInterface
 {
+    public function getId(): int;
+
     public function getImageUrl(): string;
 
     public function getImageAlt(): ?string;
