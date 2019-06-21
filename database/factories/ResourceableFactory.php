@@ -2,7 +2,6 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 use App\Resourceable;
-use Illuminate\Support\Str;
 use Faker\Generator as Faker;
 use Carbon\Carbon;
 
@@ -18,9 +17,18 @@ use Carbon\Carbon;
 */
 
 $factory->define(Resourceable::class, function (Faker $faker) {
+    $resourcables = [
+        App\Course::class,
+        App\Question::class,
+    ];
+
+    // Add new noteables here as we make them
+    $resourcableType = $faker->randomElement($resourcables);
+    $resourcable = factory($resourcableType)->create();
+
     return [
-        'resource_id' => random_int(1, 10),
-        'resourceable_id' => random_int(0, 18446744073709551615),
-        'resourceable_type' => $faker->sentence()
+        'resource_id' => factory($resourcableType)->create()->id,
+        'resourceable_type' => $resourcableType,
+        'resourceable_id' => $resourcable->id
     ];
 });
