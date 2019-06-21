@@ -21,11 +21,11 @@ class Question extends Model implements QuestionInterface
     ];
 
     /**
-     * Get the Answers for the Question.
+     * Get the Answer for the Question.
      */
     public function answers()
     {
-        return $this->hasMany(\App\Answers::class);
+        return $this->hasMany(\App\Answer::class);
     }
 
     /**

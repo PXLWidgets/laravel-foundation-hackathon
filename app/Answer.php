@@ -5,7 +5,7 @@ namespace App;
 use App\Contracts\ViewModels\AnswerInterface;
 use Illuminate\Database\Eloquent\Model;
 
-class Answers extends Model implements AnswerInterface
+class Answer extends Model implements AnswerInterface
 {
     /**
      * The attributes that are mass assignable.
@@ -18,7 +18,7 @@ class Answers extends Model implements AnswerInterface
     ];
 
     /**
-     * Get the Question for the Answers.
+     * Get the Question for the Answer.
      */
     public function question()
     {
