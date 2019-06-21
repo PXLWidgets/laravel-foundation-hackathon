@@ -3,9 +3,12 @@
 Route::get('/', 'HomepageController@index')->name('homepage');
 
 Route::group([
-    'prefix' => 'auth',
+    'prefix' => 'inloggen',
     'as'     => 'auth.',
 ], function () {
+
+    Route::get('/', 'LoginController@show')->name('login');
+
     Route::get('github', 'Auth\GithubController@redirectToProvider')->name('login_by_github');
     Route::get('github/callback', 'Auth\GithubController@handleProviderCallback')->name('login_by_github_callback');
     Route::get('logout', 'Auth\GithubController@logout')->name('logout');

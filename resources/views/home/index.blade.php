@@ -13,6 +13,12 @@
                 ervaren of beginnend, kennis te laten maken met het
                 Laravel framework en PHP.
             </p>
+
+            @guest
+                <a class="btn btn-primary" href="{{ route('auth.login') }}">
+                    Direct aan de slag!
+                </a>
+            @endguest
         </div>
 
         <br><br>

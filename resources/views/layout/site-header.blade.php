@@ -6,7 +6,7 @@
     <ul>
         @guest
             <li>
-                <a class="site-header--link" href="{{ route('auth.login_by_github') }}">
+                <a class="site-header--link" href="{{ route('auth.login') }}">
                     Inloggen
                 </a>
             </li>
@@ -21,7 +21,7 @@
             </li>
             <li>
                 <a class="site-header--link" href="{{ route('account.index') }}">
-                    Account
+                    Mijn profiel
                 </a>
             </li>
             <li>
