@@ -1,3 +1,43 @@
 #account-index {
+
+    header {
+        @include centered-flex-row(space-between, stretch);
+        margin-bottom: 2rem;
+    }
+
+
+    .avatar {
+        margin-right: 2rem;
+        flex: none;
+        position: relative;
+        border-radius: 3px;
+        background-color: $gray-100;
+        overflow: hidden;
+        @include square-pseudo(200px);
+
+        img {
+            @include absolute-overlay();
+            object-fit: cover;
+        }
+    }
+
+    .intro {
+        flex: 1 1 0;
+
+        @include centered-flex-column(space-between, flex-start);
+
+        &--top {
+            flex: 1 1 0;
+
+            p {
+                font-style: italic;
+            }
+        }
+
+        &--bottom {
+            flex: none;
+        }
+    }
+
     // ...
 }

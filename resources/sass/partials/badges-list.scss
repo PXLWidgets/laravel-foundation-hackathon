@@ -1,0 +1,22 @@
+.badges-list {
+
+    @include centered-flex-row(flex-start, flex-start, wrap);
+    @include list-unstyled;
+
+    li {
+        position: relative;
+        @include square-pseudo(160px);
+        @include default-border;
+        margin: 0.5rem;
+        border-radius: 2px;
+        overflow: hidden;
+        flex: none;
+
+        img {
+            @include absolute-overlay();
+            object-fit: contain;
+        }
+    }
+
+
+}

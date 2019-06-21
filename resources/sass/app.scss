@@ -3,6 +3,7 @@
 
 // Variables
 @import 'variables';
+@import 'mixins';
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
@@ -10,15 +11,24 @@
 @import '~@jjwesterkamp/sass-utils/sass/mixins';
 @import '~bootstrap/scss/bootstrap';
 
-@import "home/index";
-
 // ------------------------------------------------------------------------------
-//      Account namespace
+//      Site template / Global styles
 // ------------------------------------------------------------------------------
-
-@import 'account/index';
 
 @import 'template/default';
 @import 'template/site-header';
 @import 'template/site-footer';
 
+// ------------------------------------------------------------------------------
+//      General partials
+// ------------------------------------------------------------------------------
+
+@import "partials/certificates-list";
+@import "partials/badges-list";
+
+// ------------------------------------------------------------------------------
+//      Page styles
+// ------------------------------------------------------------------------------
+
+@import "home/index";
+@import 'account/index';

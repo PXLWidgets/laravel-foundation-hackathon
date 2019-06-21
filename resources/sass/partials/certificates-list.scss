@@ -1,0 +1,17 @@
+.certificates-list {
+
+    @include centered-flex-row(flex-start);
+    margin: -5px;
+    @include list-unstyled;
+
+    li {
+        padding: 0.5rem 1rem;
+        margin: 5px;
+        background-color: #c48435;
+        color: white;
+        font-weight: bold;
+        border-radius: 2px;
+    }
+
+
+}
