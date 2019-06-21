@@ -3,10 +3,14 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Laravel\Socialite\Facades\Socialite;
+use Laravel\Socialite\AbstractUser;
 
-class LoginController extends Controller
+class GithubController extends Controller
 {
     /*
     |--------------------------------------------------------------------------
@@ -55,9 +59,31 @@ class LoginController extends Controller
      */
     public function handleProviderCallback()
     {
-        $user = Socialite::driver('github')->user();
+        $github_user = Socialite::driver('github')->user();
+        $user = User::where('github_id', $github_user['id'])->first();
 
-        dd($user);
-        // $user->token;
+        if (! $user) {
+            $user = $this->create($github_user);
+        }
+
+        Auth::login($user);
+
+    }
+    /**
+     * Create a new user instance after a valid registration.
+     *
+     * @param  array  $data
+     * @return \App\User
+     */
+    protected function create(AbstractUser $data)
+    {
+        return User::create([
+            'name' => $data->name,
+            'email' => $data->email,
+            'avatar_url' => $data->avatar,
+            'github_id' => $data->id,
+            'github_username' => $data->nickname,
+            'password' => Hash::make(uniqid()),
+        ]);
     }
 }

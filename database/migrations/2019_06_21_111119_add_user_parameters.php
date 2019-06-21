@@ -14,13 +14,15 @@ class AddUserParameters extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
+            $table->string('name');
             $table->string('github_id');
+            $table->string('github_access_token');
+            $table->string('github_refresh_token');
             $table->string('github_username');
             $table->string('avatar_url');
-            $table->string('name');
 
-            $table->bigInteger('organization_id')->unsigned()->nullable();
-            $table->foreign('organization_id')->references('id')->on('organizations')->onDelete('SET NULL');
+            $table->dropColumn('first_name');
+            $table->dropColumn('last_name');
         });
     }
 }
