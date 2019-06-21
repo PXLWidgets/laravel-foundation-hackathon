@@ -13,6 +13,11 @@
 
 Route::get('/', 'HomepageController@index')->name('homepage');
 
+Route::group(['prefix'    => 'login'], function () {
+    Route::get('github', 'Auth\GithubController@redirectToProvider');
+    Route::get('github/callback', 'Auth\GithubController@handleProviderCallback');
+});
+
 Route::group([
     'prefix'    => 'account',
     'as'        => 'account.',
