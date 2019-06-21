@@ -9,16 +9,20 @@
 @extends('layout.default')
 
 @section('content')
-    <div id="course-detail">
-        <h1>Course "{{ $course->getTitle() }}" completed!</h1>
+    <div class="jumbotron">
+        <h3 class="mb-4">Helaasch!
+            {{ $course->getTitle() }} mislukt!</h3>
 
-        <ul>
+        <ul class="list-unstyled">
             @foreach ($course->getQuestions() as $question)
-                <li class="{{ in_array($question->getId(), $wrongQuestions) ? 'failure' : 'success' }}">{{ $question->getContent() }}</li>
+                <li class="mb-2 {{ in_array($question->getId(), $wrongQuestions) ? 'text-danger' : 'text-success' }}">
+                    {{ $question->getContent() }}
+                </li>
             @endforeach
         </ul>
 
-        <a href="{{ $course->getQuestions()->first()->getUrl() }}" class="btn btn-primary">Try this course again</a>
+
+        <a href="{{ route('courses.index') }}" class="btn btn-primary">Weer terug naar de lijst</a>
 
     </div>
 @endsection
