@@ -29,4 +29,6 @@ interface CourseInterface
      * @return Collection|QuestionInterface[]
      */
     public function getQuestions(): Collection;
+
+    public function isCompletedByUser(): bool;
 }

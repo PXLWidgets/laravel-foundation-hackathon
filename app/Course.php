@@ -99,4 +99,11 @@ class Course extends Model implements CourseInterface, AttachableInterface
     {
         return $this->questions()->get();
     }
+
+    public function isCompletedByUser(): bool
+    {
+        /** @var User $user */
+        $user = \Auth::user();
+        return $user->courses()->has($this->id);
+    }
 }
