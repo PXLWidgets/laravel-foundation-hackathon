@@ -14,10 +14,19 @@
 Route::get('/', 'HomepageController@index')->name('homepage');
 
 Route::group([
-    'prefix' => 'account',
-    'as' => 'account.',
+    'prefix'    => 'account',
+    'as'        => 'account.',
     'namespace' => 'Account',
 ], function () {
 
     Route::get('/', 'AccountController@index')->name('index');
+});
+
+Route::group([
+    'prefix' => 'courses',
+    'as'     => 'courses.',
+], function () {
+
+    Route::get('/', 'CoursesController@index')->name('index');
+    Route::get('{course}', 'CoursesController@show')->name('show');
 });
