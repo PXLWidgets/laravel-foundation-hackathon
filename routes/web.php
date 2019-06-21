@@ -12,12 +12,3 @@
 */
 
 Route::get('/', 'HomepageController@index')->name('homepage');
-
-Route::group([
-    'prefix' => 'account',
-    'as' => 'account.',
-    'namespace' => 'Account',
-], function () {
-
-    Route::get('/', 'AccountController@index')->name('index');
-});
