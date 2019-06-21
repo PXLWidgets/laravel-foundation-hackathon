@@ -18,5 +18,13 @@
                 Account
             </a>
         </li>
+
+        @auth
+            <li>
+                <a class="site-header--link" href="{{ route('auth.logout') }}">
+                    Uitloggen
+                </a>
+            </li>
+        @endauth
     </ul>
 </nav>
