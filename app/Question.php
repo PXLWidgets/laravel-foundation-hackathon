@@ -86,4 +86,8 @@ class Question extends Model implements QuestionInterface
         return $this->morphToMany(Resource::class, 'resourceable');
     }
 
+    public function getUrl(): string
+    {
+        return route('questions.show', ['question' => $this->getId()]);
+    }
 }

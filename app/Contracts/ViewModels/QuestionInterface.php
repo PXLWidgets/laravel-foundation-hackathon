@@ -28,4 +28,6 @@ interface QuestionInterface
     public function getType(): string;
 
     public function getCourse(): CourseInterface;
+
+    public function getUrl(): string;
 }
