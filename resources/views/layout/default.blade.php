@@ -6,24 +6,15 @@
 
     <title>{{ config('app.name') }}</title>
 
+    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 
 <body>
 
     <header class="site-header">
-        <nav>
-            <ul>
-                <li>
-                    <a href="{{ route('homepage') }}">Home</a>
-                </li>
-
-                <li>
-                    <a href="{{ route('account.index') }}">
-                        Account
-                    </a>
-                </li>
-            </ul>
-        </nav>
+        <div class="container">
+            @include('layout.site-header')
+        </div>
     </header>
 
     <main id="main-content" class="container">
@@ -34,7 +25,9 @@
     </main>
 
     <footer class="site-footer">
-        Site footer:
-        -----------
+        <div class="container">
+            @include('layout.site-footer')
+        </div>
+
     </footer>
 </body>
