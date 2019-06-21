@@ -5,6 +5,8 @@ namespace App\Support;
 use App\Contracts\ViewModels\AnswerInterface;
 use App\Contracts\ViewModels\CourseInterface;
 use App\Contracts\ViewModels\QuestionInterface;
+use App\Exceptions\InvalidAmountOfAnswersException;
+use App\Exceptions\NotAllAnswersCorrectException;
 use Session;
 
 class QuestionService
@@ -30,19 +32,28 @@ class QuestionService
         $answers   = Session::get(self::SESSION_KEY . "." . $course->getId());
 
         if ($answers === null || count($answers) !== $questions->count()) {
-            return false;
+            throw new InvalidAmountOfAnswersException('Invalid amount of answers.');
         }
+
+        $errors = [];
 
         foreach ($questions as $question) {
             $rightAnswer = $question->getCorrectAnswer();
             $answer      = $this->getGivenAnswer($answers, $question->getId());
 
             if ($rightAnswer->getId() !== $answer) {
-                return false;
+                $errors[] = $question->getId();
             }
         }
 
-        return true;
+        if (!empty($errors)) {
+            throw new NotAllAnswersCorrectException('Not all questions were answered correctly', $errors);
+        }
+    }
+
+    public function clearGivenAnswers()
+    {
+        Session::remove(self::SESSION_KEY);
     }
 
     protected function getGivenAnswer(array $answers, int $questionId)

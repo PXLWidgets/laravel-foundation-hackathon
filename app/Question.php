@@ -68,7 +68,7 @@ class Question extends Model implements QuestionInterface
 
     public function getCourse(): CourseInterface
     {
-        return $this->course()->get();
+        return $this->course()->first();
     }
 
     public function getId(): int

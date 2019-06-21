@@ -6,6 +6,8 @@ use App\Answer;
 use App\Contracts\ViewModels\AnswerInterface;
 use App\Contracts\ViewModels\QuestionInterface;
 use App\Course;
+use App\Exceptions\InvalidAmountOfAnswersException;
+use App\Exceptions\NotAllAnswersCorrectException;
 use App\Http\Requests\PostAnswerRequest;
 use App\Question;
 use App\Support\QuestionService;
@@ -24,7 +26,12 @@ class QuestionsController extends Controller
 
     public function show(int $questionId)
     {
+        /** @var QuestionInterface $question */
         $question = Question::findOrFail($questionId);
+
+        if ($question->getOrder() === 1) {
+            $this->service->clearGivenAnswers();
+        }
 
         return view('questions.show', compact('question'));
     }
@@ -39,19 +46,34 @@ class QuestionsController extends Controller
         $this->service->answerQuestion($question, $answer);
 
         $nextQuestion = Question::where('course_id', $course->getId())
-            ->where('order', $question->getOrder() + 1);
+            ->where('order', $question->getOrder() + 1)
+            ->first();
 
         if ($nextQuestion instanceof QuestionInterface) {
-            return redirect('questions.show', ['question' => $question->getId()]);
+            return redirect(route('questions.show', ['question' => $nextQuestion->getId()]));
         }
 
-        return redirect('questions.process-answers', ['course' => $course->getId()]);
+        return redirect(route('questions.process-answers', ['course' => $course->getId()]));
     }
 
     public function processAnswers(int $courseId)
     {
         $course = Course::findOrFail($courseId);
-        dd($this->service->validateAnswers($course));
+
+        try {
+            $this->service->validateAnswers($course);
+        } catch (InvalidAmountOfAnswersException $exception) {
+            return redirect(route('courses.show', ['course' => $courseId]));
+        } catch (NotAllAnswersCorrectException $exception) {
+            return redirect(route('courses.failure', ['course' => $courseId]))->with('wrongQuestions', $exception->getWrongQuestions());
+        } finally {
+            $this->service->clearGivenAnswers();
+        }
+
+        $user = \Auth::user();
+        $user->courses()->save($course);
+
+        return redirect(route('courses.failure', ['course' => $courseId]));
     }
 
 }

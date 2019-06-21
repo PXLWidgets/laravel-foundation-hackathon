@@ -105,7 +105,7 @@ class Course extends Model implements CourseInterface, AttachableInterface
     {
         /** @var User $user */
         $user = \Auth::user();
-        return $user->getCompletedCourses()->has($this->getId());
+        return $user->getCompletedCourses()->where('id', $this->getId())->first() !== null;
     }
 
     public function getId(): int
