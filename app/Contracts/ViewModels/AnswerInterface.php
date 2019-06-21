@@ -6,6 +6,6 @@ interface AnswerInterface
 {
     public function isCorrect(): bool;
 
-    public function content(): string;
+    public function getContent(): string;
 
 }

@@ -2,9 +2,10 @@
 
 namespace App;
 
+use App\Contracts\ViewModels\AnswerInterface;
 use Illuminate\Database\Eloquent\Model;
 
-class Answers extends Model
+class Answers extends Model implements AnswerInterface
 {
     /**
      * The attributes that are mass assignable.
@@ -12,26 +13,9 @@ class Answers extends Model
      * @var array
      */
     protected $fillable = [
-        'question_id', 'answer', 'is_correct'
+        'answer',
+        'is_correct',
     ];
-
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        //
-    ];
-
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        //
-    ];    
 
     /**
      * Get the Question for the Answers.
@@ -41,4 +25,13 @@ class Answers extends Model
         return $this->belongsTo(\App\Question::class);
     }
 
+    public function isCorrect(): bool
+    {
+        return $this->is_correct;
+    }
+
+    public function getContent(): string
+    {
+        return $this->answer;
+    }
 }
