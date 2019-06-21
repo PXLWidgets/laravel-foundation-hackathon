@@ -25,4 +25,8 @@ interface CourseInterface
      */
     public function resources(): Collection;
 
+    /**
+     * @return Collection|QuestionInterface[]
+     */
+    public function questions(): Collection;
 }
