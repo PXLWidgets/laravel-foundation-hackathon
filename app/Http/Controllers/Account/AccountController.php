@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Account;
 
+use App\Badge;
 use App\Course;
 use Auth;
 use Illuminate\Http\Request;
@@ -11,9 +12,11 @@ class AccountController extends Controller
 {
     public function index()
     {
+        $badges = Badge::all();
 
         return view('account.index', [
-            'user' => Auth::user()
+            'user' => Auth::user(),
+            'badges' => $badges
         ]);
     }
 }
