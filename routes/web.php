@@ -4,7 +4,7 @@ Route::get('/', 'HomepageController@index')->name('homepage');
 
 Route::group([
     'prefix' => 'auth',
-    'as'     => 'auth.'
+    'as'     => 'auth.',
 ], function () {
     Route::get('github', 'Auth\GithubController@redirectToProvider')->name('login_by_github');
     Route::get('github/callback', 'Auth\GithubController@handleProviderCallback')->name('login_by_github_callback');
@@ -12,18 +12,18 @@ Route::group([
 });
 
 Route::group([
-    'prefix'    => 'account',
-    'as'        => 'account.',
-    'namespace' => 'Account',
+    'prefix'     => 'account',
+    'as'         => 'account.',
+    'namespace'  => 'Account',
     'middleware' => 'auth',
 ], function () {
     Route::get('/', 'AccountController@index')->name('index');
 });
 
 Route::group([
-    'prefix' => 'courses',
-    'as'     => 'courses.',
-     'middleware' => 'auth',
+    'prefix'     => 'courses',
+    'as'         => 'courses.',
+    'middleware' => 'auth',
 ], function () {
 
     Route::get('/', 'CoursesController@index')->name('index');
