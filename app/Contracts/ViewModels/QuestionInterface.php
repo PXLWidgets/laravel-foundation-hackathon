@@ -8,16 +8,18 @@ use Illuminate\Support\Collection;
 
 interface QuestionInterface
 {
-    public function content(): string;
+    public function getContent(): string;
 
     /**
      * This is the nth question... (order)
      * @return int
      */
-    public function order(): int;
+    public function getOrder(): int;
 
     /**
      * @return Collection|AnswerInterface[]
      */
-    public function answers(): Collection;
+    public function getAnswers(): Collection;
+
+    public function getType(): string;
 }
