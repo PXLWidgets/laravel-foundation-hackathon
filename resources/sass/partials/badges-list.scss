@@ -1,16 +1,21 @@
 .badges-list {
 
-    @include centered-flex-row(flex-start);
-    margin: -5px;
+    @include centered-flex-row(flex-start, flex-start, wrap);
     @include list-unstyled;
 
     li {
-        padding: 0.5rem 1rem;
-        margin: 5px;
-        background-color: #c48435;
-        color: white;
-        font-weight: bold;
+        position: relative;
+        @include square-pseudo(160px);
+        @include default-border;
+        margin: 0.5rem;
         border-radius: 2px;
+        overflow: hidden;
+        flex: none;
+
+        img {
+            @include absolute-overlay();
+            object-fit: contain;
+        }
     }
 
 

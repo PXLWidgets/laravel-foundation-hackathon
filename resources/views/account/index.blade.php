@@ -37,7 +37,7 @@
         <section class="badges-section">
             <h2>My badges</h2>
 
-
+            @include('partials.badges-list')
         </section>
     </div>
 @endsection
