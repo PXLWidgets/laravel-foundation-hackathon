@@ -38,6 +38,6 @@ Route::group([
 ], function () {
 
     Route::get('{question}', 'QuestionsController@show')->name('show');
-    Route::post('', 'QuestionsController@answer')->name('answer');
+    Route::post('/', 'QuestionsController@answer')->name('answer');
     Route::get('process-answers/{course}', 'QuestionsController@processAnswers')->name('process-answers');
 });
