@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Socialite\Facades\Socialite;
 use Laravel\Socialite\AbstractUser;
+use Laravel\Socialite\Two\InvalidStateException;
 
 class GithubController extends Controller
 {
@@ -59,7 +60,12 @@ class GithubController extends Controller
      */
     public function handleProviderCallback()
     {
-        $github_user = Socialite::driver('github')->user();
+        try {
+            $github_user = Socialite::driver('github')->user();
+        } catch (InvalidStateException $exception) {
+            return redirect()->route('login_by_github');
+        }
+
         $user = User::where('github_id', $github_user['id'])->first();
 
         if (! $user) {
@@ -67,7 +73,7 @@ class GithubController extends Controller
         }
 
         Auth::login($user);
-
+        return redirect()->route('homepage');
     }
     /**
      * Create a new user instance after a valid registration.

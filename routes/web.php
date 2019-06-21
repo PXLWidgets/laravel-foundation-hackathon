@@ -14,8 +14,8 @@
 Route::get('/', 'HomepageController@index')->name('homepage');
 
 Route::group(['prefix'    => 'login'], function () {
-    Route::get('github', 'Auth\GithubController@redirectToProvider');
-    Route::get('github/callback', 'Auth\GithubController@handleProviderCallback');
+    Route::get('github', 'Auth\GithubController@redirectToProvider')->name('login_by_github');
+    Route::get('github/callback', 'Auth\GithubController@handleProviderCallback')->name('login_by_github_callback');
 });
 
 Route::group([
