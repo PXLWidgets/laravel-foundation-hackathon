@@ -30,6 +30,7 @@ Route::group([
 Route::group([
     'prefix' => 'courses',
     'as'     => 'courses.',
+    'middleware' => 'auth',
 ], function () {
 
     Route::get('/', 'CoursesController@index')->name('index');
