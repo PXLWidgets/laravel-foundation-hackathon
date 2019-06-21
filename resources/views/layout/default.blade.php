@@ -18,9 +18,6 @@
     </header>
 
     <main id="main-content" class="container">
-        Content:
-        <br>
-        -------
         @yield('content')
     </main>
 
