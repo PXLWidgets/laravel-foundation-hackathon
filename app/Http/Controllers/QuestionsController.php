@@ -85,6 +85,8 @@ class QuestionsController extends Controller
         $user = \Auth::user();
         $user->courses()->save($course);
 
+        event(new CourseCompleted($course));
+
         return redirect(route('courses.success', ['course' => $courseId]));
     }
 
