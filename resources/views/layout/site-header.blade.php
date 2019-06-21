@@ -1,7 +1,9 @@
 <nav>
     <ul>
         <li>
-            <a class="site-header--link" href="{{ route('homepage') }}">Home</a>
+            <a class="site-header--link" href="{{ route('homepage') }}">
+                Home
+            </a>
         </li>
 
 

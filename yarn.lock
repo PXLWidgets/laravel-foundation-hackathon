@@ -570,6 +570,10 @@
     lodash "^4.17.11"
     to-fast-properties "^2.0.0"
 
+"@jjwesterkamp/event-delegation@^0.4.3":
+  version "0.4.3"
+  resolved "https://registry.yarnpkg.com/@jjwesterkamp/event-delegation/-/event-delegation-0.4.3.tgz#d6ec33cd8289148517ac490a2669ceb0c88715ec"
+
 "@jjwesterkamp/sass-utils@^2.1.1":
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/@jjwesterkamp/sass-utils/-/sass-utils-2.1.1.tgz#3bc8422da4ddcbd1cf222a377b530b9d0dcc96f3"
