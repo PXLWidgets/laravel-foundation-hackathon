@@ -38,7 +38,7 @@
         </header>
 
         <section class="badges-section">
-            <h2>My badges</h2>
+            <h2>Behaalde badges</h2>
 
             @include('partials.badges-list')
         </section>

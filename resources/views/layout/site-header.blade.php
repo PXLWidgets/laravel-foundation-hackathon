@@ -7,7 +7,7 @@
         @guest
             <li>
                 <a class="site-header--link" href="{{ route('auth.login_by_github') }}">
-                    Login
+                    Inloggen
                 </a>
             </li>
         @endguest
@@ -16,7 +16,7 @@
         @auth
             <li>
                 <a class="site-header--link" href="{{ route('courses.index') }}">
-                    Courses
+                    Cursussen
                 </a>
             </li>
             <li>
