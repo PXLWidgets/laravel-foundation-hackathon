@@ -2,21 +2,17 @@
 
 namespace App;
 
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Model;
 
-class User extends Authenticatable
+class Resource extends Model
 {
-    use Notifiable;
-
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'email', 'password', 'first_name', 'last_name'
+        'title', 'url'
     ];
 
     /**
@@ -25,7 +21,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password'
+        //
     ];
 
     /**
@@ -35,14 +31,14 @@ class User extends Authenticatable
      */
     protected $casts = [
         //
-    ];
+    ];    
 
     /**
-     * Get the Certificates for the User.
+     * Get the Resourceables for the Resource.
      */
-    public function certificates()
+    public function resourceables()
     {
-        return $this->belongsToMany(\App\Certificate::class);
+        return $this->hasMany(\App\Resourceable::class);
     }
 
 }
