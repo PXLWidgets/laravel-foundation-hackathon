@@ -24,7 +24,12 @@ class CoursesController extends Controller
     public function show(int $courseId)
     {
         /** @var CourseInterface $course */
-        $course = Course::findOrFail($courseId);
+        $course = Course::with(['questions', 'resources', 'certificates'])->findOrFail($courseId);
+
+        if ($course->hasCompletedParents() === false) {
+            Session::flash('warning', 'The pope of nope said: "nope"');
+            return redirect(route('courses.index'));
+        }
 
         return view('courses.show', compact('course'));
     }

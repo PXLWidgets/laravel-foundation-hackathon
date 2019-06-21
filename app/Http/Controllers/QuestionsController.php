@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Session;
 use App\Answer;
 use App\Contracts\ViewModels\AnswerInterface;
 use App\Contracts\ViewModels\QuestionInterface;
@@ -27,13 +28,18 @@ class QuestionsController extends Controller
     public function show(int $questionId)
     {
         /** @var QuestionInterface $question */
-        $question = Question::findOrFail($questionId);
+        $question = Question::with(['course'])->findOrFail($questionId);
 
         if ($question->getOrder() === 1) {
             $this->service->clearGivenAnswers();
         }
 
-        return view('questions.show', compact('question'));
+        $totalQuestions = $question->getCourse()->getQuestionCount();
+        $answers   = Session::get(QuestionService::SESSION_KEY . "." . $question->getCourse()->getId());
+
+        $progress = 100 / $totalQuestions * count($answers);
+
+        return view('questions.show', compact('question', 'progress'));
     }
 
     public function answer(PostAnswerRequest $request)

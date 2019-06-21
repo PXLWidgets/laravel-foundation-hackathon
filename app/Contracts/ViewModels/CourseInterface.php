@@ -33,4 +33,6 @@ interface CourseInterface
     public function getQuestions(): Collection;
 
     public function isCompletedByUser(): bool;
+
+    public function hasCompletedParents(): bool;
 }
