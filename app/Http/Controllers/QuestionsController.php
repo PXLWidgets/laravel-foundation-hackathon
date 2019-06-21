@@ -7,6 +7,7 @@ use App\Answer;
 use App\Contracts\ViewModels\AnswerInterface;
 use App\Contracts\ViewModels\QuestionInterface;
 use App\Course;
+use App\Events\CourseCompleted;
 use App\Exceptions\InvalidAmountOfAnswersException;
 use App\Exceptions\NotAllAnswersCorrectException;
 use App\Http\Requests\PostAnswerRequest;
