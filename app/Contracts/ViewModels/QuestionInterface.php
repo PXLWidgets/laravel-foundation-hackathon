@@ -22,4 +22,6 @@ interface QuestionInterface
     public function getAnswers(): Collection;
 
     public function getType(): string;
+
+    public function getCourse(): CourseInterface;
 }

@@ -35,3 +35,13 @@ Route::group([
     Route::get('/', 'CoursesController@index')->name('index');
     Route::get('{course}', 'CoursesController@show')->name('show');
 });
+
+Route::group([
+    'prefix' => 'questions',
+    'as'     => 'questions.',
+], function () {
+
+    Route::get('{question}', 'QuestionsController@show')->name('show');
+    Route::post('', 'QuestionsController@answer')->name('answer');
+    Route::get('process-answers', 'QuestionsController@processAnswers')->name('process-answers');
+});

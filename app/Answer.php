@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Contracts\ViewModels\AnswerInterface;
+use App\Contracts\ViewModels\QuestionInterface;
 use Illuminate\Database\Eloquent\Model;
 
 class Answer extends Model implements AnswerInterface
@@ -33,5 +34,10 @@ class Answer extends Model implements AnswerInterface
     public function getContent(): string
     {
         return $this->answer;
+    }
+
+    public function getQuestion(): QuestionInterface
+    {
+        return $this->question()->get();
     }
 }

@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Contracts\ViewModels\AnswerInterface;
+use App\Contracts\ViewModels\CourseInterface;
 use App\Contracts\ViewModels\QuestionInterface;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
@@ -62,5 +63,10 @@ class Question extends Model implements QuestionInterface
     public function getType(): string
     {
         return $this->type;
+    }
+
+    public function getCourse(): CourseInterface
+    {
+        return $this->course()->get();
     }
 }
