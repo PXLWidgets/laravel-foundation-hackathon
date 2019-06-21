@@ -24,8 +24,8 @@ class PostAnswerRequest extends FormRequest
     public function rules()
     {
         return [
-            'question_id' => 'required|exists:questions',
-            'answer_id'   => 'required|exists:answers',
+            'question_id' => 'required|exists:questions,id',
+            'answer_id'   => 'required|exists:answers,id',
         ];
     }
 }

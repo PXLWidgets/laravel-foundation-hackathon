@@ -29,6 +29,8 @@ class QuestionService
         $questions = $course->getQuestions();
         $answers   = Session::get(self::SESSION_KEY . "." . $course->getId());
 
+        dump($answers);
+
         if ($answers === null || count($answers) !== $questions->count()) {
             return false;
         }
@@ -43,6 +45,11 @@ class QuestionService
         }
 
         return true;
+    }
+
+    public function clearGivenAnswers()
+    {
+        Session::remove(self::SESSION_KEY);
     }
 
     protected function getGivenAnswer(array $answers, int $questionId)

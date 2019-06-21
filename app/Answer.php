@@ -38,7 +38,7 @@ class Answer extends Model implements AnswerInterface
 
     public function getQuestion(): QuestionInterface
     {
-        return $this->question()->get();
+        return $this->question()->first();
     }
 
     public function getId(): int

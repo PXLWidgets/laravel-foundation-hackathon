@@ -42,16 +42,25 @@ class QuestionsController extends Controller
             ->where('order', $question->getOrder() + 1);
 
         if ($nextQuestion instanceof QuestionInterface) {
-            return redirect('questions.show', ['question' => $question->getId()]);
+            return redirect(route('questions.show', ['question' => $question->getId()]));
         }
 
-        return redirect('questions.process-answers', ['course' => $course->getId()]);
+        return redirect(route('questions.process-answers', ['course' => $course->getId()]));
     }
 
     public function processAnswers(int $courseId)
     {
         $course = Course::findOrFail($courseId);
-        dd($this->service->validateAnswers($course));
+
+//        dd($this->service->validateAnswers($course));
+
+        if ($this->service->validateAnswers($course)) {
+            $user = \Auth::user();
+            $user->courses()->save($course);
+        }
+
+        $this->service->clearGivenAnswers();
+
     }
 
 }
