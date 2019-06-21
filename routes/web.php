@@ -26,7 +26,7 @@ Route::group([
     'prefix'    => 'account',
     'as'        => 'account.',
     'namespace' => 'Account',
-    // 'middleware' => 'auth',
+    'middleware' => 'auth',
 ], function () {
     Route::get('/', 'AccountController@index')->name('index');
 });

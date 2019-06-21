@@ -1,12 +1,9 @@
+<a class="site-header--title" href="{{ route('homepage') }}">
+    Laravel SkillTree
+</a>
+
 <nav>
     <ul>
-        <li>
-            <a class="site-header--link" href="{{ route('homepage') }}">
-                Home
-            </a>
-        </li>
-
-
         <li>
             <a class="site-header--link" href="{{ route('courses.index') }}">
                 Courses

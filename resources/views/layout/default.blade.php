@@ -23,11 +23,28 @@
 
 <header class="site-header">
     <div class="container">
-        @include('layout.site-header')
+        <div class="site-header--content">
+            @include('layout.site-header')
+        </div>
     </div>
 </header>
 
     <div class="container">
+
+        @if( Session::has('success'))
+            <div class="notification success">
+                {{ Session::get( 'success' ) }}
+            </div>
+        @elseif( Session::has('warning'))
+            <div class="notification warning">
+                {{ Session::get('warning') }}
+            </div>
+        @elseif( Session::has('danger'))
+            <div class="notification danger">
+                {{ Session::get('danger') }}
+            </div>
+        @endif
+
         <ul class="breadcrumbs">
             <li>Home</li>
             @foreach($crumbs as $crumb)
@@ -40,12 +57,7 @@
         @yield('content')
     </main>
 
-<footer class="site-footer">
-    <div class="container">
-        @include('layout.site-footer')
-    </div>
-
-</footer>
+    @include('layout.site-footer')
 
 <script src="{{ mix('js/app.js')}}"></script>
 @stack('scripts')

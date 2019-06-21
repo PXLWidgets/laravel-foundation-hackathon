@@ -2,5 +2,14 @@
     height: $site-footer-height;
     padding: 1rem 0;
     border-top: 1px solid $gray-300;
-    background-color: $gray-100;
+    color: white;
+    background: url("/images/laravel-foundation-logo.png") center right/contain no-repeat,
+                linear-gradient(to left, #{$primary-dark} 0%, #{$primary} 100%);
+
+    .initiative {
+    }
+
+    &--content {
+        @include centered-flex-row(space-between);
+    }
 }
