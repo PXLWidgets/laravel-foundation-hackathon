@@ -7,7 +7,6 @@ use App\Contracts\ViewModels\CourseInterface;
 use App\Contracts\ViewModels\QuestionInterface;
 use App\Support\QuestionService;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Session;
 use Tests\TestCase;
 
 class QuestionServiceTest extends TestCase
