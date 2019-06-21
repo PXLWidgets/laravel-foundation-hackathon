@@ -1,7 +1,7 @@
 @php
 
     /**
-     * @var
+     * @var \App\User $user
      */
 
 @endphp
@@ -14,13 +14,13 @@
 
         <header>
             <div class="avatar">
-                <img src="https://i.stack.imgur.com/WknC7.jpg?s=328&g=1" alt="">
+                <img src="{{ $user->avatar_url }}" alt="">
             </div>
 
             <div class="intro">
 
                 <div class="intro--top">
-                    <h1>Jeffrey Westerkamp</h1>
+                    <h1>{{ $user->name }}</h1>
                     <p>Hackin' and crackin 🎉</p>
                 </div>
 
