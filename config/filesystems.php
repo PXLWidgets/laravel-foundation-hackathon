@@ -50,7 +50,7 @@ return [
 
         'paperclip' => [
             'driver' => 'local',
-            'root' => storage_path('paperclip')
+            'root' => public_path('paperclip')
         ],
 
         'public' => [

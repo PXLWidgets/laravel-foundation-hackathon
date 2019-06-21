@@ -1,5 +1,7 @@
 <ul class="badges-list">
-    @for($i = 1; $i <= 16; $i++)
-        <li><img src="/images/badges/b{{ $i }}.jpg" alt=""></li>
-    @endfor
+    @foreach ($badges as $badge)
+        <li>
+            <img alt="{{$badge->title}}" src="{{ str_replace('localhost', 'localhost:8011', $badge->image->url()) }}" class="grey img-fluid"/>
+        </li>
+    @endforeach
 </ul>
