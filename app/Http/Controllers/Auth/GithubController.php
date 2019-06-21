@@ -96,4 +96,10 @@ class GithubController extends Controller
             'password' => Hash::make(uniqid()),
         ]);
     }
+
+    protected function logout()
+    {
+        Auth::logout();
+        return redirect()->route('homepage');
+    }
 }
