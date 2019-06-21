@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Laravel\Socialite\Facades\Socialite;
 
 class User extends Authenticatable
 {
@@ -18,7 +19,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'email', 'password', 'name', 'github_id', 'avatar_url', 'github_username'
+        'email', 'password', 'name', 'github_id', 'avatar_url', 'github_username', 'github_access_token', 'github_refresh_token'
     ];
 
     /**
@@ -50,6 +51,15 @@ class User extends Authenticatable
     public function courses(): BelongsToMany
     {
         return $this->belongsToMany(Course::class);
+    }
+
+    public function getGithubUser()
+    {
+        try {
+            return Socialite::driver('github')->userFromToken($this->github_access_token);
+        } catch (\Exception $e) {
+            return null;
+        }
     }
 
 }

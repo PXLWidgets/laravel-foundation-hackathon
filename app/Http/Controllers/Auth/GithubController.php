@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\User;
+use GuzzleHttp\Exception\ClientException;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -64,6 +65,8 @@ class GithubController extends Controller
             $github_user = Socialite::driver('github')->user();
         } catch (InvalidStateException $exception) {
             return redirect()->route('login_by_github');
+        } catch (ClientException $exception) {
+            return redirect()->route('login_by_github');
         }
 
         $user = User::where('github_id', $github_user['id'])->first();
@@ -87,6 +90,7 @@ class GithubController extends Controller
             'name' => $data->name,
             'email' => $data->email,
             'avatar_url' => $data->avatar,
+            'github_access_token' => $data->token,
             'github_id' => $data->id,
             'github_username' => $data->nickname,
             'password' => Hash::make(uniqid()),
