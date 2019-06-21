@@ -51,4 +51,9 @@ class Resource extends Model implements ResourceInterface
     {
         return $this->url;
     }
+
+    public function getId(): int
+    {
+        return $this->id;
+    }
 }
