@@ -29,8 +29,6 @@ class QuestionService
         $questions = $course->getQuestions();
         $answers   = Session::get(self::SESSION_KEY . "." . $course->getId());
 
-        dump($answers);
-
         if ($answers === null || count($answers) !== $questions->count()) {
             return false;
         }

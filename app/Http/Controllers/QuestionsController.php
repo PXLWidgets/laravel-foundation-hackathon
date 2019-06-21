@@ -24,7 +24,12 @@ class QuestionsController extends Controller
 
     public function show(int $questionId)
     {
+        /** @var QuestionInterface $question */
         $question = Question::findOrFail($questionId);
+
+        if ($question->getOrder() === 1) {
+            $this->service->clearGivenAnswers();
+        }
 
         return view('questions.show', compact('question'));
     }
