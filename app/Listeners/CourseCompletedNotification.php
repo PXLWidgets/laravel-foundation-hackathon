@@ -21,7 +21,7 @@ class CourseCompletedNotification
         $certificates = $courseCompleted->course->certificates();
 
         $certificates->each(function (Certificate $certificate) use ($user) {
-            $message = sprintf("'Je certificaat '%s' is behaald!", $certificate->title);
+            $message = sprintf("Je certificaat '%s' is behaald!", $certificate->title);
             Session::flash('success', $message);
 
             $user->certificates()->attach($certificate);
