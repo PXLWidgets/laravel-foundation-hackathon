@@ -44,5 +44,31 @@
             </div>
         </div>
 
+        <div class="row flex-row align-items-center">
+            <div class="col-sm-6 col-lg-4">
+                <img src="/images/badges/b3.jpg" alt="">
+            </div>
+
+            <div class="col-sm-6 col-lg-4">
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                </p>
+            </div>
+        </div>
+
+        <div class="row flex-row align-items-center">
+
+            <div class="col-sm-6 col-lg-4">
+                <p>
+                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                    nisi ut aliquip ex ea commodo consequat.
+                </p>
+            </div>
+
+            <div class="col-sm-6 col-lg-4">
+                <img src="/images/badges/b4.jpg" alt="">
+            </div>
+        </div>
     </div>
 @endsection
