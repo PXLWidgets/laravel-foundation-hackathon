@@ -53,8 +53,10 @@
         </ul>
     </div>
 
-    <main id="main-content" class="container">
-        @yield('content')
+    <main id="main-content">
+        <div class="container">
+            @yield('content')
+        </div>
     </main>
 
     @include('layout.site-footer')
