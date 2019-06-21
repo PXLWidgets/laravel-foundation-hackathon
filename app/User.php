@@ -68,4 +68,14 @@ class User extends Authenticatable
         }
     }
 
+    public function badges(): BelongsToMany
+    {
+        return $this->belongsToMany(Badge::class);
+    }
+
+    public function getBadges(): Collection
+    {
+        return $this->badges()->get();
+    }
+
 }
