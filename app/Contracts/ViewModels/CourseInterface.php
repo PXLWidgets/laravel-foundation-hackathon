@@ -8,25 +8,27 @@ use Illuminate\Support\Collection;
 
 interface CourseInterface
 {
-    public function imageUrl(): string;
+    public function getImageUrl(): string;
 
-    public function imageAlt(): ?string;
+    public function getImageAlt(): ?string;
 
-    public function pageUrl(): string;
+    public function getPageUrl(): string;
 
-    public function title(): string;
+    public function getTitle(): string;
 
-    public function questionCount(): int;
+    public function getQuestionCount(): int;
 
-    public function description(): string;
+    public function getDescription(): string;
 
     /**
      * @return Collection|ResourceInterface[]
      */
-    public function resources(): Collection;
+    public function getResources(): Collection;
 
     /**
      * @return Collection|QuestionInterface[]
      */
-    public function questions(): Collection;
+    public function getQuestions(): Collection;
+
+    public function isCompletedByUser(): bool;
 }

@@ -2,9 +2,12 @@
 
 namespace App;
 
+use App\Contracts\ViewModels\AnswerInterface;
+use App\Contracts\ViewModels\QuestionInterface;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Collection;
 
-class Question extends Model
+class Question extends Model implements QuestionInterface
 {
     /**
      * The attributes that are mass assignable.
@@ -12,35 +15,18 @@ class Question extends Model
      * @var array
      */
     protected $fillable = [
-        'course_id', 'order', 'question', 'type'
+        'order',
+        'question',
+        'type',
     ];
 
     /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        //
-    ];
-
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        //
-    ];    
-
-    /**
-     * Get the Answers for the Question.
+     * Get the Answer for the Question.
      */
     public function answers()
     {
-        return $this->hasMany(\App\Answers::class);
+        return $this->hasMany(\App\Answer::class);
     }
-
 
     /**
      * Get the Course for the Question.
@@ -50,4 +36,31 @@ class Question extends Model
         return $this->belongsTo(\App\Course::class);
     }
 
+    public function getContent(): string
+    {
+        return $this->question;
+    }
+
+    /**
+     * This is the nth question... (order)
+     *
+     * @return int
+     */
+    public function getOrder(): int
+    {
+        return $this->order;
+    }
+
+    /**
+     * @return Collection|AnswerInterface[]
+     */
+    public function getAnswers(): Collection
+    {
+        return $this->answers()->get();
+    }
+
+    public function getType(): string
+    {
+        return $this->type;
+    }
 }

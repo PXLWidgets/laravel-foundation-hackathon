@@ -1,7 +1,7 @@
 <?php
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
-use App\Answers;
+use App\Answer;
 use Illuminate\Support\Str;
 use Faker\Generator as Faker;
 use Carbon\Carbon;
@@ -17,7 +17,7 @@ use Carbon\Carbon;
 |
 */
 
-$factory->define(Answers::class, function (Faker $faker) {
+$factory->define(Answer::class, function (Faker $faker) {
     return [
         'question_id' => random_int(1, 10),
         'answer' => $faker->sentence(),

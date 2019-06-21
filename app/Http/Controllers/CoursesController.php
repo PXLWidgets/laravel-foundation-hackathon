@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Course;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 
@@ -9,12 +10,13 @@ class CoursesController extends Controller
 {
     public function index()
     {
-        $courses = new Collection();
+        $courses = Course::all();
         return view('courses.index', compact('courses'));
     }
 
-    public function show()
+    public function show(int $courseId)
     {
-        return view('courses.show');
+        $course = Course::findOrFail($courseId);
+        return view('courses.show', compact('course'));
     }
 }
