@@ -6,6 +6,7 @@ use App\Contracts\ViewModels\AnswerInterface;
 use App\Contracts\ViewModels\CourseInterface;
 use App\Contracts\ViewModels\QuestionInterface;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Support\Collection;
 
 class Question extends Model implements QuestionInterface
@@ -69,4 +70,10 @@ class Question extends Model implements QuestionInterface
     {
         return $this->course()->get();
     }
+
+    public function resources(): MorphToMany
+    {
+        return $this->morphToMany(Resource::class, 'resourceable');
+    }
+
 }
