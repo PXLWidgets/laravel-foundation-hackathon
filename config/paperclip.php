@@ -155,7 +155,7 @@ return [
     |
     */
 
-    'imagine' => Imagine\Gd\Imagine::class,
+    'imagine' => Imagine\Imagick\Imagine::class,
 
     /*
     |--------------------------------------------------------------------------

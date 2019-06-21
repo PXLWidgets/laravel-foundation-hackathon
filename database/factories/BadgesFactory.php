@@ -17,10 +17,9 @@ use Carbon\Carbon;
 |
 */
 
-$factory->define(Answer::class, function (Faker $faker) {
+$factory->define(\App\Badge::class, function (Faker $faker) {
     return [
-        'question_id' => random_int(1, 10),
-        'answer' => $faker->sentence(),
-        'is_correct' => $faker->boolean()
+        'title' => $faker->words(3, true),
+        'image' => new \SplFileInfo('local/path/to.file')
     ];
 });

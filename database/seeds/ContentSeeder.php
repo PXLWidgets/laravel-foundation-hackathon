@@ -158,7 +158,7 @@ class ContentSeeder extends Seeder
         factory(Answer::class)->create([
             'question_id' => $course_3_Question_1,
             'answer'      => 'Simpele database wrapper rondom active record',
-            'is_correct'  => false,
+            'is_correct'  => true,
         ]);
         factory(Answer::class)->create([
             'question_id' => $course_3_Question_1,
@@ -167,7 +167,7 @@ class ContentSeeder extends Seeder
         ]);
 
         $course_3_Question_2 = factory(Question::class)->create([
-            'course_id' => $secondCourse->id,
+            'course_id' => $thirdCourse->id,
             'order'     => 2,
             'question'  => 'Wat is een kortere manier om de volgende code te schrijven: ```$article = Article::find($article_id); $article->read_count++; $article->save();```',
             'type'      => 'MultipleChoice',
@@ -284,5 +284,13 @@ class ContentSeeder extends Seeder
             'description' => 'Jij bent op de hoogte van Laravel 5.8',
             'course_id' => $thirdCourse->id,
         ]);
+
+        for ($index = 1; $index < 17; $index++) {
+            factory(\App\Badge::class)->create([
+                'title' => 'badge ' . $index,
+                'image'=> new \SplFileInfo(public_path('/images/badges/b' . $index . '.jpg'))
+            ]);
+        }
+
     }
 }
