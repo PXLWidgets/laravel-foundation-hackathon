@@ -12,16 +12,31 @@ class CoursesController extends Controller
     public function index()
     {
         $courses = Course::all();
-        dump($courses);
-        return view('courses.index', compact('courses'));
+
+        $maxWidth = $this->getWidestPartInTree($courses);
+
+        $courses = $courses->groupBy('parent_id');
+
+        return view('courses.index', compact('courses', 'maxWidth'));
     }
 
     public function show(int $courseId)
     {
         /** @var CourseInterface $course */
         $course = Course::findOrFail($courseId);
-
-        dump($course->isCompletedByUser());
         return view('courses.show', compact('course'));
+    }
+
+    protected function getWidestPartInTree(Collection $courses)
+    {
+        $grouped = [];
+        foreach ($courses as $course) {
+            $grouped[$course['parent_id'] === null ? 0 : $course['parent_id']][] = $course;
+        }
+
+        $max = collect($grouped)->max(function($item) {
+            return count($item);
+        });
+        return $max;
     }
 }

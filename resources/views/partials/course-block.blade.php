@@ -6,27 +6,21 @@
 
 @endphp
 
-]
 <article class="course-block">
-
-    <header>
-        <img class="image"
-             src="{{ $course->getImageUrl() }}"
-             alt="{{ $course->getImageAlt() ?? $course->getTitle() }}">
-
-        <h1>{{ $course->getTitle() }}</h1>
-    </header>
-
-    <h2>Resources</h2>
-
-    <ul>
-        @foreach($course->getResources() as $resource)
-            <li>
-                <a href="{{ $resource->url() }}">
-                    {{ $resource->label() ?? $resource->url() }}
-                </a>
-            </li>
-        @endforeach
-    </ul>
-
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-3">
+                    <img class="img-fluid card-image-left image"
+                         src="{{ $course->getImageUrl() }}"
+                         alt="{{ $course->getImageAlt() ?? $course->getTitle() }}">
+                </div>
+                <div class="col-9">
+                    <h5 class="card-title">{{ $course->getTitle() }}</h5>
+                    <p class="card-text">{{ $course->getDescription() }}</p>
+                    <a href="{{ $course->getPageUrl() }}" class="btn btn-primary">Doe de cursus</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </article>
