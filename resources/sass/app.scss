@@ -6,3 +6,19 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+@import '~@jjwesterkamp/sass-utils/sass/functions';
+@import '~@jjwesterkamp/sass-utils/sass/mixins';
+@import '~bootstrap/scss/bootstrap';
+
+@import "home/index";
+
+// ------------------------------------------------------------------------------
+//      Account namespace
+// ------------------------------------------------------------------------------
+
+@import 'account/index';
+
+@import 'template/default';
+@import 'template/site-header';
+@import 'template/site-footer';
+

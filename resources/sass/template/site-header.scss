@@ -1,0 +1,19 @@
+.site-header {
+    height: $site-header-height;
+    padding: 1rem 0;
+    border-bottom: 1px solid $gray-300;
+    background-color: $gray-100;
+
+    ul {
+        display: flex;
+        list-style: none;
+    }
+
+    &--link {
+        display: block;
+        padding: 0 0.5rem;
+        margin: 0 0.5rem;
+        background-color: $primary;
+        color: white;
+    }
+}

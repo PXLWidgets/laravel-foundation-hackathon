@@ -11,8 +11,13 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'HomepageController@index')->name('homepage');
 
-Route::group()
+Route::group([
+    'prefix' => 'account',
+    'as' => 'account.',
+    'namespace' => 'Account',
+], function () {
+
+    Route::get('/', 'AccountController@index')->name('index');
+});
