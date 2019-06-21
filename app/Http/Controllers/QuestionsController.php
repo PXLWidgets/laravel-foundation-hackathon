@@ -26,8 +26,6 @@ class QuestionsController extends Controller
     {
         $question = Question::findOrFail($questionId);
 
-        dd($question);
-
         return view('questions.show', compact('question'));
     }
 

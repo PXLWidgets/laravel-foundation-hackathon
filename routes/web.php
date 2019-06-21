@@ -26,7 +26,7 @@ Route::group([
     'prefix'    => 'account',
     'as'        => 'account.',
     'namespace' => 'Account',
-    'middleware' => 'auth',
+    // 'middleware' => 'auth',
 ], function () {
     Route::get('/', 'AccountController@index')->name('index');
 });
@@ -34,7 +34,7 @@ Route::group([
 Route::group([
     'prefix' => 'courses',
     'as'     => 'courses.',
-    'middleware' => 'auth',
+    // 'middleware' => 'auth',
 ], function () {
 
     Route::get('/', 'CoursesController@index')->name('index');

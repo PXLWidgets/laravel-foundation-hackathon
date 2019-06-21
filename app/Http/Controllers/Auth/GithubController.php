@@ -64,9 +64,9 @@ class GithubController extends Controller
         try {
             $github_user = Socialite::driver('github')->user();
         } catch (InvalidStateException $exception) {
-            return redirect()->route('login_by_github');
+            return redirect()->route('auth.login_by_github');
         } catch (ClientException $exception) {
-            return redirect()->route('login_by_github');
+            return redirect()->route('auth.login_by_github');
         }
 
         $user = User::where('github_id', $github_user['id'])->first();

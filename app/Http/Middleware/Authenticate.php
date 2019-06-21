@@ -15,7 +15,7 @@ class Authenticate extends Middleware
     protected function redirectTo($request)
     {
         if (! $request->expectsJson()) {
-            return route('login_by_github');
+            return route('auth.login_by_github');
         }
     }
 }
