@@ -14,6 +14,7 @@ class CoursesController extends Controller
         $courses = Course::all();
 
         $maxWidth = $this->getWidestPartInTree($courses);
+        $maxWidth = floor(12 / $maxWidth);
 
         $courses = $courses->groupBy('parent_id');
 

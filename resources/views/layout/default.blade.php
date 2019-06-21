@@ -21,11 +21,11 @@
 
 <body>
 
-    <header class="site-header">
-        <div class="container">
-            @include('layout.site-header')
-        </div>
-    </header>
+<header class="site-header">
+    <div class="container">
+        @include('layout.site-header')
+    </div>
+</header>
 
     <div class="container">
         <ul class="breadcrumbs">
@@ -40,10 +40,14 @@
         @yield('content')
     </main>
 
-    <footer class="site-footer">
-        <div class="container">
-            @include('layout.site-footer')
-        </div>
+<footer class="site-footer">
+    <div class="container">
+        @include('layout.site-footer')
+    </div>
 
-    </footer>
+</footer>
+
+<script src="{{ mix('js/app.js')}}"></script>
+@stack('scripts')
+
 </body>

@@ -6,7 +6,9 @@
 
 @endphp
 
-<article class="course-block">
+<article class="course-block @if ($course->parent_id !== null && $course->isCompletedByUser() === false)
+    disabled
+@endif">
     <div class="card">
         <div class="card-body">
             <div class="row">
