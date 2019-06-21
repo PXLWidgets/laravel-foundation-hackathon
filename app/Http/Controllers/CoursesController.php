@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Contracts\ViewModels\CourseInterface;
 use App\Course;
-use Illuminate\Http\Request;
+use Session;
 use Illuminate\Support\Collection;
 
 class CoursesController extends Controller
@@ -25,6 +25,7 @@ class CoursesController extends Controller
     {
         /** @var CourseInterface $course */
         $course = Course::findOrFail($courseId);
+
         return view('courses.show', compact('course'));
     }
 
@@ -33,7 +34,7 @@ class CoursesController extends Controller
         /** @var CourseInterface $course */
         $course = Course::findOrFail($courseId);
 
-        dd('Succeeded ' . $course->getTitle());
+        return view('courses.success', compact('course'));
     }
 
     public function failure(int $courseId)
@@ -41,19 +42,23 @@ class CoursesController extends Controller
         /** @var CourseInterface $course */
         $course = Course::findOrFail($courseId);
 
-        dd('Failed ' . $course->getTitle());
+        return view('courses.failure', [
+            'course'         => $course,
+            'wrongQuestions' => Session::get('wrongQuestions', []),
+        ]);
     }
 
     protected function getWidestPartInTree(Collection $courses)
     {
         $grouped = [];
         foreach ($courses as $course) {
-            $grouped[$course['parent_id'] === null ? 0 : $course['parent_id']][] = $course;
+            $grouped[ $course['parent_id'] === null ? 0 : $course['parent_id'] ][] = $course;
         }
 
-        $max = collect($grouped)->max(function($item) {
+        $max = collect($grouped)->max(function ($item) {
             return count($item);
         });
+
         return $max;
     }
 }

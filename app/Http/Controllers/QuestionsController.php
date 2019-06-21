@@ -6,6 +6,8 @@ use App\Answer;
 use App\Contracts\ViewModels\AnswerInterface;
 use App\Contracts\ViewModels\QuestionInterface;
 use App\Course;
+use App\Exceptions\InvalidAmountOfAnswersException;
+use App\Exceptions\NotAllAnswersCorrectException;
 use App\Http\Requests\PostAnswerRequest;
 use App\Question;
 use App\Support\QuestionService;
@@ -58,13 +60,18 @@ class QuestionsController extends Controller
     {
         $course = Course::findOrFail($courseId);
 
-        if ($this->service->validateAnswers($course)) {
-            $user = \Auth::user();
-            $user->courses()->save($course);
+        try {
+            $this->service->validateAnswers($course);
+        } catch (InvalidAmountOfAnswersException $exception) {
+            return redirect(route('courses.show', ['course' => $courseId]));
+        } catch (NotAllAnswersCorrectException $exception) {
+            return redirect(route('courses.failure', ['course' => $courseId]))->with('wrongQuestions', $exception->getWrongQuestions());
+        } finally {
             $this->service->clearGivenAnswers();
-
-            return redirect(route('courses.success', ['course' => $courseId]));
         }
+
+        $user = \Auth::user();
+        $user->courses()->save($course);
 
         return redirect(route('courses.failure', ['course' => $courseId]));
     }
