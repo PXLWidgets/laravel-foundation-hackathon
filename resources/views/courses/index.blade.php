@@ -12,7 +12,7 @@
 
 @section('content')
     <div id="courses-index">
-        <h1>Courses</h1>
+        <h1>Cursussen</h1>
 
 
         @forelse($courses as $courseLevel)
