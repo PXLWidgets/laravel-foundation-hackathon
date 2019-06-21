@@ -2,9 +2,10 @@
 
 namespace App;
 
+use App\Contracts\ViewModels\ResourceInterface;
 use Illuminate\Database\Eloquent\Model;
 
-class Resource extends Model
+class Resource extends Model implements ResourceInterface
 {
     /**
      * The attributes that are mass assignable.
@@ -31,7 +32,7 @@ class Resource extends Model
      */
     protected $casts = [
         //
-    ];    
+    ];
 
     /**
      * Get the Resourceables for the Resource.
@@ -41,4 +42,13 @@ class Resource extends Model
         return $this->hasMany(\App\Resourceable::class);
     }
 
+    public function label(): ?string
+    {
+        return $this->title;
+    }
+
+    public function url(): string
+    {
+        return $this->url;
+    }
 }

@@ -35,6 +35,7 @@ class Course extends Model implements CourseInterface, AttachableInterface
      * @var array
      */
     protected $fillable = [
+        'title',
         'intro',
         'order',
     ];
@@ -56,12 +57,12 @@ class Course extends Model implements CourseInterface, AttachableInterface
 
     public function getImageUrl(): string
     {
-        return $this->image->url('thumb');
+        return $this->image->url('thumb') ?? 'https://placekitten.com/g/200/200';
     }
 
     public function getImageAlt(): ?string
     {
-        return $this->getTitle();
+        return $this->getTitle() ?? '';
     }
 
     public function getPageUrl(): string
@@ -71,7 +72,7 @@ class Course extends Model implements CourseInterface, AttachableInterface
 
     public function getTitle(): string
     {
-        return $this->title;
+        return $this->title ?? 'NO TITLE';
     }
 
     public function getQuestionCount(): int
