@@ -9,7 +9,6 @@ use App\Course;
 use App\Http\Requests\PostAnswerRequest;
 use App\Question;
 use App\Support\QuestionService;
-use Session;
 
 class QuestionsController extends Controller
 {

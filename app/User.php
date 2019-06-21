@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Collection;
 use Laravel\Socialite\Facades\Socialite;
 
 class User extends Authenticatable
@@ -51,6 +52,11 @@ class User extends Authenticatable
     public function courses(): BelongsToMany
     {
         return $this->belongsToMany(Course::class);
+    }
+
+    public function getCompletedCourses(): Collection
+    {
+        return $this->courses()->get();
     }
 
     public function getGithubUser()
