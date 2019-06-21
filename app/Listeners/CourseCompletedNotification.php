@@ -2,9 +2,11 @@
 
 namespace App\Listeners;
 
+use App\Badge;
 use App\Certificate;
 use App\Events\CourseCompleted;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
 class CourseCompletedNotification
@@ -16,7 +18,9 @@ class CourseCompletedNotification
 
         if ($user->getCompletedCourses()->count() == 1) {
             Session::flash('success', 'Je eerste course afgerond! Vanaf nu is je laptop beschikbaar');
-            // TODO new badge
+
+            $badge = Badge::orderBy(DB::raw('RAND()'))->first();
+            $user->badges()->attach($badge);
         }
         $certificates = $courseCompleted->course->certificates();
 
