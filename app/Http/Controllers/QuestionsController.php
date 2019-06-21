@@ -52,8 +52,6 @@ class QuestionsController extends Controller
     {
         $course = Course::findOrFail($courseId);
 
-//        dd($this->service->validateAnswers($course));
-
         if ($this->service->validateAnswers($course)) {
             $user = \Auth::user();
             $user->courses()->save($course);
