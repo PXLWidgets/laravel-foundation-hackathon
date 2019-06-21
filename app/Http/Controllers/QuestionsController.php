@@ -34,10 +34,15 @@ class QuestionsController extends Controller
             $this->service->clearGivenAnswers();
         }
 
+        $answersTotal = 0;
         $totalQuestions = $question->getCourse()->getQuestionCount();
         $answers   = Session::get(QuestionService::SESSION_KEY . "." . $question->getCourse()->getId());
 
-        $progress = 100 / $totalQuestions * count($answers);
+        if (is_array($answers)) {
+            $answersTotal = count($answers);
+        }
+
+        $progress = 100 / $totalQuestions * $answersTotal;
 
         return view('questions.show', compact('question', 'progress'));
     }
